@@ -2,8 +2,9 @@ import express from "express"
 import cors from "cors"
 import dotenv from "dotenv"
 import pool from "./config/db.js"
-import userRoutes from "./routes/userRoutes.js"
+import projRoutes from "./routes/projRoutes.js"
 import errorHandle from "./middlewares/error.js"
+import createProjTable from "./data/createProjTable.js"
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -11,9 +12,11 @@ const port = process.env.PORT || 3001;
 app.use(express.json());
 app.use(cors());
 
-app.use("/api", userRoutes);
+app.use("/api", projRoutes);
 
-app.use(errorHandle)
+app.use(errorHandle);
+
+createProjTable();
 
 app.get("/", async(req, res) => {
     const result = await pool.query("SELECT current_database()");

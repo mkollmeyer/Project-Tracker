@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS proj(
+    id SERIAL PRIMARY KEY,
+    pname VARCHAR(100) NOT NULL,
+    stages INT NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+)
