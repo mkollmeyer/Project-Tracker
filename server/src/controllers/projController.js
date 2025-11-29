@@ -1,4 +1,8 @@
-import { createProjSevice, getProjByIdSevice, getAllProjService, updateProjSevice, deleteProjSevice } from "../models/projModel.js";
+import { createProjSevice, 
+        getProjByIdSevice, 
+        getAllProjService, 
+        updateProjSevice, 
+        deleteProjSevice } from "../models/projModel.js";
 
 const handleResponse = (res, status, message, data=null) => {
     res.status(status).json({
@@ -8,9 +12,9 @@ const handleResponse = (res, status, message, data=null) => {
     })
 };
 export const createProj = async(req, res, next) => {
-    const {name, email} = req.body;
+    const {pname, stages} = req.body;
     try {
-        const newProj = await createProjSevice(name, email);
+        const newProj = await createProjSevice(pname, stages);
         handleResponse(res, 201, "Project created", newProj);
     } catch (err){
         next(err);
@@ -34,10 +38,10 @@ export const getProjById = async(req, res, next) => {
     }
 };
 export const updateProj = async(req, res, next) => {
-    const {name, email} = req.body;
+    const {pname, stages} = req.body;
     try {
-        const updatedProj = await updateProjSevice(req.params.id, name, email);
-        if(!Proj) return handleResponse(res, 404, "Project not found");
+        const updatedProj = await updateProjSevice(req.params.id, pname, stages);
+        if(!updatedProjroj) return handleResponse(res, 404, "Project not found");
         handleResponse(res, 200, "Project created", updatedProj);
     } catch (err){
         next(err);
@@ -46,7 +50,7 @@ export const updateProj = async(req, res, next) => {
 export const deleteProj = async(req, res, next) => {
     try {
         const deletedProj = await deleteProjSevice(req.params.id);
-        if(!Proj) return handleResponse(res, 404, "Project not found")
+        if(!deletedProj) return handleResponse(res, 404, "Project not found")
         handleResponse(res, 200, "Project deleted", deletdProj)
     } catch (err){
         next(err);
