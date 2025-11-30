@@ -41,8 +41,8 @@ export const updateProj = async(req, res, next) => {
     const {pname, stages} = req.body;
     try {
         const updatedProj = await updateProjSevice(req.params.id, pname, stages);
-        if(!updatedProjroj) return handleResponse(res, 404, "Project not found");
-        handleResponse(res, 200, "Project created", updatedProj);
+        if(!updatedProj) return handleResponse(res, 404, "Project not found");
+        handleResponse(res, 200, "Project updated", updatedProj);
     } catch (err){
         next(err);
     }
@@ -51,7 +51,7 @@ export const deleteProj = async(req, res, next) => {
     try {
         const deletedProj = await deleteProjSevice(req.params.id);
         if(!deletedProj) return handleResponse(res, 404, "Project not found")
-        handleResponse(res, 200, "Project deleted", deletdProj)
+        handleResponse(res, 200, "Project deleted", deletedProj)
     } catch (err){
         next(err);
     }
