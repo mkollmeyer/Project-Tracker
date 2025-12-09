@@ -1,7 +1,7 @@
 import express from "express"
 import { createProj, deleteProj, getAllProj, getProjById, updateProj } from "../controllers/projController.js"
 
-const projRouter = express.Router();
+const projRouter= express.Router();
 
 projRouter.post("/proj", createProj);
 projRouter.get("/proj", getAllProj);
